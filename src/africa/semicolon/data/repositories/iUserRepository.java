@@ -1,15 +1,8 @@
 package africa.semicolon.data.repositories;
 
 import africa.semicolon.data.models.User;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface iUserRepository extends MongoRepository<User, String> {
-//    User save(User user);
-//    void delete(User user);
-//    void delete(String email);
-//    List<User> findAll();
-//    int count();
-
-    User findByEmail(String email);
-
-
+    User findUserByEmail(String email);
 }

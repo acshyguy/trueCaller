@@ -30,15 +30,4 @@ public interface iUserService {
 
     //int getNumberOfUsers();
 
-
-
-
-
-
-
-    UpdateContactResponse updateContact(String userEmail, String contactEmail, UpdateContactRequest updateContactRequest);
-
-    Contact findContactByEmail(String userEmail, String contactEmail);
-
-    void deleteContact(String userEmail, String contactEmail);
 }

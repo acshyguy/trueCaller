@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ContactService implements IContactService {
+public class ContactService implements iContactService {
 
     @Autowired
     private ContactRepository contactRepository;
@@ -20,8 +20,8 @@ public class ContactService implements IContactService {
         return contactRepository.save(contact);
     }
 
-//    @Override
-//    public int size() {
-//        return contactRepository.count();
-//    }
+    @Override
+    public int getNumberOfContacts() {
+        return (int) contactRepository.count();
+    }
 }

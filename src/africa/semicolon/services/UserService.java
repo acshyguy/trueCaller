@@ -51,7 +51,7 @@ public class UserService implements iUserService {
 
     }
     private void isExist(String email){
-        User savedUser = userRepository.findByEmail(email);
+        User savedUser = userRepository.findUserByEmail(email);
         if(savedUser != null) throw new UserExistsException(email +"Already exist");
     }
     public User findUser(String userEmail){
@@ -75,7 +75,7 @@ public class UserService implements iUserService {
         //2
         Contact savedContact = contactService.addNewContact(contact);
         //3
-        User user = userRepository.findByEmail(addRequest.getUserEmail());
+        User user = userRepository.findUserByEmail(addRequest.getUserEmail());
         //4
         user.getContacts().add(savedContact);
         //5
@@ -90,19 +90,19 @@ public class UserService implements iUserService {
     public UpdateUserResponse updateUser(String email, UpdateUserRequest request) {
         User foundUser = findUser(email);
         if(!request.getFirstName().equals(" ") && request.getFirstName()!= null){
-            foundUser.setFirstName(request.getFirstName);
+            foundUser.setFirstName(request.getFirstName());
         }
         if(!request.getLastName().equals(" ") && request.getLastName()!= null){
-            foundUser.setLastName(request.getLastName);
+            foundUser.setLastName(request.getLastName());
         }
         if(!request.getPhoneNumber().equals(" ") && request.getPhoneNumber()!= null){
-            foundUser.setPhoneNumber(request.getPhoneNumber);
+            foundUser.setPhoneNumber(request.getPhoneNumber());
         }
         if(!request.getEmail().equals(" ") && request.getEmail()!= null){
-            foundUser.setEmail(request.getEmail);
+            foundUser.setEmail(request.getEmail());
         }
         if(!request.getPassword().equals(" ") && request.getPassword()!= null){
-            foundUser.setPassword(request.getPassword);
+            foundUser.setPassword(request.getPassword());
         }
         userRepository.save(foundUser);
         UpdateUserResponse updateUserResponse = new UpdateUserResponse();
@@ -112,11 +112,11 @@ public class UserService implements iUserService {
     }
     @Override
     public List<AllContactResponse> findContactsBelongingTo(String userEmail) {
-        User user = userRepository.findByEmail(userEmail);
+        User user = userRepository.findUserByEmail((userEmail));
         List<Contact> allUserContacts = user.getContacts();
         List<AllContactResponse> response = new ArrayList<>();
         allUserContacts.forEach(contact -> {
-            AllContactResponse singleResponse singleResponse=new AllContactResponse();
+            AllContactResponse singleResponse = new AllContactResponse();
             Mapper.map(contact,singleResponse);
             response.add(singleResponse);
         });

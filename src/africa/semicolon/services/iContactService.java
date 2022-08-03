@@ -6,5 +6,5 @@ public interface iContactService {
 
     Contact addNewContact(Contact contact);
 
-    //int size();
+    int getNumberOfContacts();
 }
