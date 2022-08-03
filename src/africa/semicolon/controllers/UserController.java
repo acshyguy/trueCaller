@@ -19,6 +19,7 @@ public class UserController {
     private iUserService userService;
     @PostMapping("/user")
     public ResponseEntity<?> registerUser(@RequestBody RegisterRequest registerRequest){
+        System.out.println("i am registering");
         try{
             RegisterResponse serviceResponse = userService.register(registerRequest);
             return new ResponseEntity<>(serviceResponse, HttpStatus.CREATED);
